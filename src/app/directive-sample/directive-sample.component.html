@@ -1,50 +1,53 @@
-<p>directive-sample works!</p>
+<div class="row">
+    <div class="col-lg-6 col-sm-9">
+        <p>directive-sample works!</p>
 
-<h4>*ngIf</h4>
-<span>Enter a number:</span>
-<input type="text" [(ngModel)] = "num">
+        <h4>*ngIf</h4>
+        <span>Enter a number:</span>
+        <input type="text" [(ngModel)]="num" class="form-control">
 
-<div *ngIf="num%2==0 then ifBlock else elseBlock"></div>
+        <div *ngIf="num%2==0 then ifBlock else elseBlock"></div>
 
-<ng-template #ifBlock>
-    <p><b>Number is even</b></p>
-</ng-template>
+        <ng-template #ifBlock>
+            <p><b>Number is even</b></p>
+        </ng-template>
 
-<ng-template #elseBlock>
-    <p><b>Number is odd</b></p>
-</ng-template>
-
-
-<h4>*ngFor</h4>
-<ul>
-    <li *ngFor="let c of colors">{{c}}</li>
-</ul>
-<select [(ngModel)] = "selectedColor">
-    <option *ngFor="let c of colors">{{c}}</option>
-</select>
-
-<table border="1">
-    <thead>
-        <th>Product ID</th>
-        
-        <th>Product Code</th>
-        
-        <th>Product Name</th>
-        
-        <th>Product Price</th>
-    </thead>
-    <tbody>
-        <!-- [class.r1]="pro.price<=1000" [class.b1]="pro.price>=1000" -->
-        <tr *ngFor="let pro of product" [style.color]="selectedColor" >
-            <td>{{pro.productId}}</td>
-            <td>{{pro.productCode}}</td>
-            <td>{{pro.productName}}</td>
-            <td>{{pro.price}}
-                <i *ngIf="pro.price>1000">Discount available</i>
-            </td>
-        </tr>
-    </tbody>
-</table>
+        <ng-template #elseBlock>
+            <p><b>Number is odd</b></p>
+        </ng-template>
 
 
-<input type="button" value="Add New Product" (click)="AddNewProduct()">
+        <h4>*ngFor</h4>
+        <ul>
+            <li *ngFor="let c of colors">{{c}}</li>
+        </ul>
+        <select [(ngModel)]="selectedColor" class="form-select">
+            <option *ngFor="let c of colors">{{c}}</option>
+        </select>
+
+        <table class="table table-hover">
+            <thead>
+                <th>Product ID</th>
+                <th>Product Code</th>
+                <th>Product Name</th>
+                <th>Product Price</th>
+            </thead>
+            <tbody>
+                <!-- [class.r1]="pro.price<=1000" [class.b1]="pro.price>=1000" -->
+                <tr *ngFor="let pro of product" [style.color]="selectedColor">
+                    <td>{{pro.productId}}</td>
+                    <td>{{pro.productCode}}</td>
+                    <td>{{pro.productName}}
+                        <input type="button" value="Like" [appFavs]="selectedColor">
+                    </td>
+                    <td>{{pro.price}}
+                        <i *ngIf="pro.price>1000">Discount available</i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <input type="button" class="btn btn-primary" value="Add New Product" (click)="AddNewProduct()">
+    </div>
+</div>

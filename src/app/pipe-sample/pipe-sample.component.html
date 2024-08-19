@@ -1,0 +1,11 @@
+<p>pipe-sample works!</p>
+
+
+<p>Product ID: {{product.productId | number:'1.2-2'}}</p>
+<p>Product Code: {{product.productCode | mypipe:'M':'-'}}</p>
+<p>Product Name: {{product.productName | uppercase}}</p>
+<p>Product Price: {{product.price | currency:'INR'}}</p>
+<p>Dob : {{DOB | date:'dd-MMM-yyyy'}}</p>
+
+{{product|json}}
+
