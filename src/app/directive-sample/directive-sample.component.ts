@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Product } from '../models/product';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-directive-sample',
@@ -10,11 +11,17 @@ export class DirectiveSampleComponent {
   num:number;
   colors: string[];
   product:Product[];
+  id: String|undefined;
+  city:string|undefined;
+  country:string|undefined;
+  
+
+
   selectedColor:string = "red";
-  constructor(){
+  constructor(private activatedRoute:ActivatedRoute){
     this.num = 0;
     this.colors = ["blue","red","green"];
-
+    
     let p1= new Product(101,"P101","Laptop",1000);
     let p2 = new Product(102,"P102","Mouse",2000);
     let p3 = new Product(103,"P103","Charger",500);
@@ -24,6 +31,16 @@ export class DirectiveSampleComponent {
     this.product.push(p2);
     this.product.push(p3);
 
+    this.activatedRoute.params.subscribe(data=>{
+      this.id = data['id'];
+    });
+
+    
+    this.activatedRoute.queryParams.subscribe(data=>{
+      this.city = data['city'];
+      this.country=data['country'];
+
+    });
 
   }
   AddNewProduct(){

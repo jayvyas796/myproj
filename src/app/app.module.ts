@@ -10,6 +10,10 @@ import { PipeSampleComponent } from './pipe-sample/pipe-sample.component';
 import { MypipePipe } from './custom/mypipe.pipe';
 import { RouterModule, Routes } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
+import { PersonalComponent } from './pipe-sample/personal/personal.component';
+import { EducationComponent } from './pipe-sample/education/education.component';
+import { CustomerAddComponent } from './customer/customer-add/customer-add.component';
+import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 
 
 
@@ -22,6 +26,10 @@ import { MenuComponent } from './menu/menu.component';
     PipeSampleComponent,
     MypipePipe,
     MenuComponent,
+    PersonalComponent,
+    EducationComponent,
+    CustomerAddComponent,
+    CustomerListComponent,
     
   ],
   imports: [
