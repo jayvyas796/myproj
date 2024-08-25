@@ -6,6 +6,8 @@ import { PipeSampleComponent } from './pipe-sample/pipe-sample.component';
 import { PersonalComponent } from './pipe-sample/personal/personal.component';
 import { EducationComponent } from './pipe-sample/education/education.component';
 import { CustomerAddComponent } from './customer/customer-add/customer-add.component';
+import { ProductTemplateDrivenComponent } from './product/product-template-driven/product-template-driven.component';
+import { ProductModelDrivenComponent } from './product/product-model-driven/product-model-driven.component';
 
 const routes: Routes = [
   {path:"databinding",component:DatabindingComponent},
@@ -15,6 +17,8 @@ const routes: Routes = [
     {path:"education",component:EducationComponent}
   ]},
   {path:"datasharing",component:CustomerAddComponent},
+  {path:"templatedriven",component:ProductTemplateDrivenComponent},
+  {path:"reactive",component:ProductModelDrivenComponent},
   {path:'**',component:DatabindingComponent}
 
 ]
