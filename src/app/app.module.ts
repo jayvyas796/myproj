@@ -16,6 +16,7 @@ import { CustomerAddComponent } from './customer/customer-add/customer-add.compo
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 import { ProductTemplateDrivenComponent } from './product/product-template-driven/product-template-driven.component';
 import { ProductModelDrivenComponent } from './product/product-model-driven/product-model-driven.component';
+import { ObservableSampleComponent } from './observable-sample/observable-sample.component';
 
 
 
@@ -34,6 +35,7 @@ import { ProductModelDrivenComponent } from './product/product-model-driven/prod
     CustomerListComponent,
     ProductTemplateDrivenComponent,
     ProductModelDrivenComponent,
+    ObservableSampleComponent,
     
   ],
   imports: [

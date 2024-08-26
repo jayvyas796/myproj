@@ -46,8 +46,16 @@
                     <label>Product Full Desc</label>
                     <textarea class="form-control" formControlName="fullDesc"> </textarea>
                 </div>
+            </div>
 
-                
+            <div formArrayName="codes">
+                <h4>Codes</h4>
+                <div *ngFor="let item of codes.controls; let i=index">
+                    <div class="form-group">
+                        <span>code {{i+1}}</span>
+                        <input type="text" [formControlName]="i" class="form-control">
+                    </div>
+                </div>
             </div>
             
             <input type="submit" value="Save Product" class="btn btn-primary mt-2"> 

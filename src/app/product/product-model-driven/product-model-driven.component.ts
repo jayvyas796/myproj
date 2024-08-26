@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product-model-driven',
@@ -24,7 +24,10 @@ export class ProductModelDrivenComponent {
       description: this.fb.group({
         shortDesc: this.fb.control(''),
         fullDesc: this.fb.control(''),
-      })
+      }),
+      codes: this.fb.array(
+        [this.fb.control(''),this.fb.control('')] 
+      )
     })
 
     this.frm.get('productName')?.valueChanges.subscribe(data=>{
@@ -78,5 +81,9 @@ export class ProductModelDrivenComponent {
     });
 
 
+  }
+
+  get codes(){
+    return this.frm.controls['codes'] as FormArray;
   }
 }
