@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Product } from 'src/app/models/product';
+import { MessageService } from 'src/app/service/message.service';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-product-template-driven',
@@ -10,7 +12,9 @@ import { Product } from 'src/app/models/product';
 export class ProductTemplateDrivenComponent {
   product:Product;
 
-  constructor(){
+  constructor(private messageService:MessageService,
+      private productService:ProductService
+  ){
     this.product = new Product();
 
   }
@@ -18,10 +22,21 @@ export class ProductTemplateDrivenComponent {
   saveProduct(frm:NgForm){
     if(frm.valid){
       //save in db
-      alert('Product Saved successfully');
+      this.productService.addProduct(this.product).subscribe({
+        next:(res) => {
+          if(res){
+            this.messageService.notify('Product Saved Successfully');
+          }
+        },
+        error:(err) => {
+          console.log('Error > '+err);
+        }
+      })
+      //alert('Product Saved successfully');
+      this.messageService.notify('Product saved successfully');
     }
     else{
-      alert('Validation Error');
+      this.messageService.notify('Validation Error');
     }
   }
 }

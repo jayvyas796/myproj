@@ -5,3 +5,10 @@
 
 <app-menu></app-menu>
 <router-outlet></router-outlet>
+
+
+<div class="alert alert-warning text-center fixed-bottom">
+    {{this.message}}
+</div>
+
+<input type="button" (click)="callme()" value="Add Subscription" />

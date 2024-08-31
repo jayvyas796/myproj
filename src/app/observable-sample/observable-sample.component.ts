@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, Inject } from '@angular/core';
 import { BehaviorSubject, concatWith, map, Observable, ReplaySubject, retry, Subject, take } from 'rxjs';
+import { LoggerService } from '../service/logger.service';
 
 @Component({
   selector: 'app-observable-sample',
@@ -13,11 +14,13 @@ export class ObservableSampleComponent {
   rsubjectData: ReplaySubject<string> | undefined;
 
 
-
-  constructor() {
+  constructor(private logger:LoggerService) {
     this.subjectData = new Subject<string>();
     this.bsubjectData = new BehaviorSubject<string>('test0');
     this.rsubjectData = new ReplaySubject<string>(2);
+
+    this.logger.getName();
+
   }
 
   create() {

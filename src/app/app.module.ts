@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +18,7 @@ import { CustomerListComponent } from './customer/customer-list/customer-list.co
 import { ProductTemplateDrivenComponent } from './product/product-template-driven/product-template-driven.component';
 import { ProductModelDrivenComponent } from './product/product-model-driven/product-model-driven.component';
 import { ObservableSampleComponent } from './observable-sample/observable-sample.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
 
 
 
@@ -36,13 +38,15 @@ import { ObservableSampleComponent } from './observable-sample/observable-sample
     ProductTemplateDrivenComponent,
     ProductModelDrivenComponent,
     ObservableSampleComponent,
+    ProductListComponent,
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

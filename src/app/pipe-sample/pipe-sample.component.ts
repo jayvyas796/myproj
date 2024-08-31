@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Product } from '../models/product';
 import { Router } from '@angular/router';
+import { LoggerService } from '../service/logger.service';
 
 @Component({
   selector: 'app-pipe-sample',
@@ -13,10 +14,15 @@ export class PipeSampleComponent {
   DOB:Date;
   //router = Inject(Router);//Dirrect way to inject class 
 
-  constructor(private router:Router){
+  constructor(private router:Router,
+    private logger:LoggerService
+  ){
     this.product = new Product(101,"Laptop","P101",45000);
 
     this.DOB = new Date('1996-07-12');
+
+    this.logger.setName('jay '+Math.random());
+    
   }
 
   redirect(){
