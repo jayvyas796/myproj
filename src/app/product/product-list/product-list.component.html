@@ -7,6 +7,8 @@
             <th>Product Code</th>
             <th>Product Name</th>
             <th>Product Price</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -15,6 +17,12 @@
             <td>{{item.productCode}}</td>
             <td>{{item.productName}}</td>
             <td>{{item.price}}</td>
+            <td>
+                <input type="button" (click)="editProduct(item)" value="Edit" class="btn btn-warning">
+            </td>
+            <td>
+                <input type="button" (click)="deleteProduct(item)" value="X" class="btn btn-danger" >
+            </td>
         </tr>
     </tbody>
 </table>

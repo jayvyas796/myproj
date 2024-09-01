@@ -12,18 +12,23 @@ import { ObservableSampleComponent } from './observable-sample/observable-sample
 import { ProductListComponent } from './product/product-list/product-list.component';
 
 const routes: Routes = [
-  {path:"databinding",component:DatabindingComponent},
-  {path:"dir/:id",component:DirectiveSampleComponent},
-  {path:"pipe",component:PipeSampleComponent,children:[
-    {path:"personal",component:PersonalComponent},
-    {path:"education",component:EducationComponent}
-  ]},
-  {path:"datasharing",component:CustomerAddComponent},
-  {path:"templatedriven",component:ProductTemplateDrivenComponent},
-  {path:"reactive",component:ProductModelDrivenComponent},
-  {path:"observable",component:ObservableSampleComponent},
-  {path:"list",component:ProductListComponent},
-  {path:'**',component:DatabindingComponent}
+  { path: "databinding", component: DatabindingComponent },
+  { path: "dir/:id", component: DirectiveSampleComponent },
+  {
+    path: "pipe", component: PipeSampleComponent, children: [
+      { path: "personal", component: PersonalComponent },
+      { path: "education", component: EducationComponent }
+    ]
+  },
+  { path: "datasharing", component: CustomerAddComponent },
+  { path: "templatedriven", component: ProductTemplateDrivenComponent },
+  { path: "reactive", component: ProductModelDrivenComponent },
+  { path: "observable", component: ObservableSampleComponent },
+  { path: "list", component: ProductListComponent },
+  { path: 'adminhome', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) },
+  { path: 'userhome', loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule) },
+  { path: 'student', loadComponent: () => import('./student/student.component').then(c => c.StudentComponent) },
+  { path: '**', component: DatabindingComponent }
 
 ]
 

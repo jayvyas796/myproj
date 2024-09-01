@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Product } from '../models/product';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { environment } from 'src/environments/environment.development';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,19 +11,19 @@ export class ProductService {
   constructor() { }
 
   getProducts(){
-    return this.httpClient.get<Product[]>('https://localhost:7241/api/ProductAPI/getall');
+    return this.httpClient.get<Product[]>(`${environment.BASEURL}/api/ProductAPI/getall`);
   }
   addProduct(productToInsert:Product){
     let myHeader = new HttpHeaders({"Content-Type":"application/json"});
 
     let data = JSON.stringify(productToInsert);
-    return this.httpClient.post<boolean>('https://localhost:7241/api/ProductAPI/add',data,{headers:myHeader});
+    return this.httpClient.post<boolean>(`${environment.BASEURL}/api/ProductAPI/add`,data,{headers:myHeader});
   }
   deleteProduct(pid:number){
-    return this.httpClient.delete<boolean>(`https://localhost:7241/api/ProductAPI/delete/${pid}`);
+    return this.httpClient.delete<boolean>(`${environment.BASEURL}/api/ProductAPI/delete/${pid}`);
   }
 
   getProductById(pid:number){
-    return this.httpClient.get<Product>(`https://localhost:7241/api/ProductAPI/get/${pid}`);
+    return this.httpClient.get<Product>(`${environment.BASEURL}/api/ProductAPI/get/${pid}`);
   }
 }
