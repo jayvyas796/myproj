@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ICanDeactivateClass } from 'src/app/guards/check.guard';
 
 @Component({
   selector: 'app-product-model-driven',
   templateUrl: './product-model-driven.component.html',
   styleUrls: ['./product-model-driven.component.css']
 })
-export class ProductModelDrivenComponent {
-  frm:FormGroup;
+export class ProductModelDrivenComponent implements ICanDeactivateClass {
+  frm: FormGroup;
 
-  constructor(private fb:FormBuilder){
+  constructor(private fb: FormBuilder) {
     //Old way
     // this.frm = new FormGroup({
     //   productId : new FormControl()
@@ -17,24 +18,24 @@ export class ProductModelDrivenComponent {
 
     //New way
     this.frm = this.fb.group({
-      productId : this.fb.control(''),
-      productCode: this.fb.control('',[Validators.required]),
-      productName: this.fb.control('',{updateOn:'blur',validators:[Validators.required,Validators.pattern('^[a-zA-Z0-9 ]+$')]}),
-      price:this.fb.control(''),
+      productId: this.fb.control(''),
+      productCode: this.fb.control('', [Validators.required]),
+      productName: this.fb.control('', { updateOn: 'blur', validators: [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]+$')] }),
+      price: this.fb.control(''),
       description: this.fb.group({
         shortDesc: this.fb.control(''),
         fullDesc: this.fb.control(''),
       }),
       codes: this.fb.array(
-        [this.fb.control(''),this.fb.control('')] 
+        [this.fb.control(''), this.fb.control('')]
       )
     })
 
-    this.frm.get('productName')?.valueChanges.subscribe(data=>{
+    this.frm.get('productName')?.valueChanges.subscribe(data => {
       let priceCtrl = this.frm.get('price');
       priceCtrl?.clearValidators();
 
-      if(data!=null && data.indexOf('P')!=-1){
+      if (data != null && data.indexOf('P') != -1) {
         priceCtrl?.addValidators([Validators.required])
       }
       priceCtrl?.updateValueAndValidity();
@@ -42,19 +43,28 @@ export class ProductModelDrivenComponent {
     });
 
   }
+  checkCanDeactivate(): boolean {
+    if (this.frm.valid) {
+      let confirmLeave = confirm('Do you want to leave the page by saving?');
+      if (confirmLeave) {
+        this.saveProduct();
+      }
+    }
+    return true;
+  }
 
-  saveProduct(){
-    if(this.frm.valid){
+  saveProduct() {
+    if (this.frm.valid) {
       let data = JSON.stringify(this.frm.value);
 
-      alert('product save successfully '+ data);
+      alert('product save successfully ' + data);
     }
-    else{
+    else {
       alert('something went wrong');
     }
   }
 
-  disableValidation(){
+  disableValidation() {
     //find the element
     let productNameCtrl = this.frm.get('productName');
 
@@ -64,26 +74,29 @@ export class ProductModelDrivenComponent {
     //update UI
     productNameCtrl?.updateValueAndValidity();
   }
-  resetForm(){
+  resetForm() {
     this.frm.reset();
   }
-  updateForm(){
+  updateForm() {
 
     //this.frm.get('productId')?.setValue(111);
 
     this.frm.patchValue({
-      productId:345,
-      productName:'jay',
-      description:{
-        shortDesc:'test',
-        fullDesc:'full test'
+      productId: 345,
+      productName: 'jay',
+      description: {
+        shortDesc: 'test',
+        fullDesc: 'full test'
       }
     });
 
 
   }
 
-  get codes(){
+  get codes() {
     return this.frm.controls['codes'] as FormArray;
   }
+
+
+
 }
