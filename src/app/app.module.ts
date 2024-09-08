@@ -19,6 +19,9 @@ import { ProductTemplateDrivenComponent } from './product/product-template-drive
 import { ProductModelDrivenComponent } from './product/product-model-driven/product-model-driven.component';
 import { ObservableSampleComponent } from './observable-sample/observable-sample.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
+import { ParentComponent } from './parent/parent.component';
+import { ChildComponent } from './child/child.component';
+import { ProjectionComponent } from './projection/projection.component';
 
 
 
@@ -39,6 +42,9 @@ import { ProductListComponent } from './product/product-list/product-list.compon
     ProductModelDrivenComponent,
     ObservableSampleComponent,
     ProductListComponent,
+    ParentComponent,
+    ChildComponent,
+    ProjectionComponent,
     
   ],
   imports: [

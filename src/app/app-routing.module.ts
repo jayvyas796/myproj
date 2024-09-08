@@ -14,6 +14,7 @@ import { authGuard } from './guards/auth.guard';
 import { checkGuard } from './guards/check.guard';
 import { check1Guard } from './guards/check1.guard';
 import { check2Guard } from './guards/check2.guard';
+import { ParentComponent } from './parent/parent.component';
 
 const routes: Routes = [
   { path: "databinding", component: DatabindingComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'adminhome', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),canMatch:[check2Guard] },
   { path: 'userhome', loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule) },
   { path: 'student', loadComponent: () => import('./student/student.component').then(c => c.StudentComponent) },
+  {path:'hooks',component:ParentComponent},
   { path: '**', component: DatabindingComponent }
 
 ]
