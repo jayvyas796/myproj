@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,10 @@ import { ProductListComponent } from './product/product-list/product-list.compon
 import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './child/child.component';
 import { ProjectionComponent } from './projection/projection.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { serverInterceptor } from './custom/server.interceptor';
+
 
 
 
@@ -45,6 +49,8 @@ import { ProjectionComponent } from './projection/projection.component';
     ParentComponent,
     ChildComponent,
     ProjectionComponent,
+    LoginComponent,
+    HomeComponent,
     
   ],
   imports: [
@@ -54,7 +60,9 @@ import { ProjectionComponent } from './projection/projection.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    provideHttpClient(withInterceptors([serverInterceptor]))
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

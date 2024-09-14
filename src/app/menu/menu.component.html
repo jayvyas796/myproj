@@ -5,7 +5,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav" *ngIf="authService.currentUser!=undefined">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" routerLinkActive="test" [routerLink]="['databinding']">Data Bindings</a>
           </li>
@@ -35,6 +35,17 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLinkActive="test" [routerLink]="['hooks']">Hooks</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="test" (click)="Logout()">Logout</a>
+          </li>
+
+          
+        </ul>
+
+        <ul class="navbar-nav" *ngIf="authService.currentUser==undefined">
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="test" [routerLink]="['login']">Login</a>
           </li>
         </ul>
       </div>

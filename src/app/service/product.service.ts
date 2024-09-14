@@ -2,12 +2,14 @@ import { inject, Injectable } from '@angular/core';
 import { Product } from '../models/product';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
+import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
   httpClient = inject(HttpClient);
+  authService = inject(AuthService);
   constructor() { }
 
   getProducts(){

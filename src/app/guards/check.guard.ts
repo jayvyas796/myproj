@@ -11,7 +11,7 @@ export const checkGuard: CanDeactivateFn<ICanDeactivateClass> = (component, curr
     if(confirmLeave){
       component.saveProduct();
     }
-  }
-  return true;*/
-  return component.checkCanDeactivate();
+  }*/
+  return true;
+  //return component.checkCanDeactivate();
 };

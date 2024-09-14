@@ -1,5 +1,15 @@
-import { CanActivateChildFn } from '@angular/router';
+import { inject } from '@angular/core';
+import { CanActivateChildFn, Router } from '@angular/router';
+import { AuthService } from '../service/auth.service';
 
 export const check1Guard: CanActivateChildFn = (childRoute, state) => {
-  return false;
+  let authService = inject(AuthService);
+  let router = inject(Router);
+  if(authService.currentUser == undefined){
+    router.navigate(['login']);
+    return false;
+  }
+  else{
+     return true;
+  }
 };
